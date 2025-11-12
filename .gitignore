@@ -1,0 +1,64 @@
+# ========================
+# C / C++
+# ========================
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+*.out
+*.app
+*.a
+*.lib
+a.out
+build/
+cmake-build-*/
+
+# ========================
+# Logs / Dumps
+# ========================
+*.log
+core
+*.core
+
+# ========================
+# Environment / Secrets
+# ========================
+.env
+.env.*
+*.key
+*.pem
+*.secret
+
+# ========================
+# OS generated files
+# ========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ========================
+# Editor settings / caches
+# ========================
+.vscode/*
+!.vscode/settings.json      # ← これは共有OK（必要なら）
+!.vscode/tasks.json         # ← ビルド設定を共有するなら
+!.vscode/launch.json        # ← デバッグ設定を共有するなら
+.idea/
+*.swp
+*.swo
+
+# ========================
+# Docker
+# ========================
+*.pid
+docker-compose.override.yml
+
+# ========================
+# Package/Caches
+# ========================
+__pycache__/
+node_modules/
+.cache/
+tmp/
+temp/
