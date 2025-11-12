@@ -8,12 +8,12 @@ VScodeのDevContainerで接続することで、以下のことができるよ�
 
 DockerコンテナをDevContainerで接続するには、以下の手順を実行する
 
-1. Gitをクローンする。
+### 1. Gitをクローンする。
 クローンしたいディレクトリで、以下のコマンドを実行する。
 ```
 git clone https://github.com/1260315/lab.git
 ```
-2. Dev Container: Reopen in Folder を実行する
+### 2. Dev Container: Reopen in Folder を実行する
 クローンしたディレクトリをVScodeで開く。
   →vscodeの左上の「ファイル」→「フォルダーを開く」→クローンしたディレクトリを選択
 
