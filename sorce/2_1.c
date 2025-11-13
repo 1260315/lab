@@ -28,8 +28,7 @@ int main(){
     }
 
 
-    if((pid = fork()) < 0){           //forkでエラー
-        perror("fork");
+    if((pid = fork()) < 0){           //forkで子プロセスの作成
         exit(1);
 
     }else if(pid == 0){     //子プロセスである
@@ -42,7 +41,7 @@ int main(){
 
         exit(0);
 
-    }else{                      //親プロセスである
+    }else{                  //親プロセスである
         printf("親プロセスのpid : %d\n", getpid());     //自身のPIDを出力
 
         close(fd[0]);   //読み込み口のファイル記述子を閉じる
