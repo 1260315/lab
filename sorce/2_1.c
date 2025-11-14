@@ -29,6 +29,7 @@ int main(void){
 
 
     if((pid = fork()) < 0){           //forkで子プロセスの作成
+        perror("fork");
         exit(1);
 
     }else if(pid == 0){     //子プロセスである
