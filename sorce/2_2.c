@@ -13,23 +13,25 @@ exec システムコールを利用し、実行するプログラムを変更す
 #include <sys/types.h>  // getpid, read, wait
 #include <sys/uio.h>    // read, write
 #include <sys/wait.h>   // wait
-#include <unistd.h>     // getpid, close, pipe, read, write
+#include <unistd.h>     // getpid
 
 int main(int args, char *argv[]){
 
     pid_t pid;
     int status;
 
-    if((pid = fork()) < 0){     //forkで子プロセｓ作成
+    if((pid = fork()) < 0){     //forkで子プロセス作成
         perror("fork");
         exit(1);
 
     }else if(pid == 0){         //子プロセスである
+        printf("子プロセスのPID : %d\n", getpid());
         execv("./14", argv);    //exec関数で2_2_excecd.cでプロセスを置き換える
-        printf("エラー : プロセスがexecによって書き換えられていない\n");
+        perror("エラー : プロセスがexecによって書き換えられていない\n");
         exit(1);
 
     }else{                      //親プロセスである
+        printf("親プロセスのPID : %d\n", getpid());
         if(wait(&status) == (pid_t) - 1){   //子プロセスの終了を待つ
             perror("wait");
             exit(1);

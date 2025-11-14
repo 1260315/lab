@@ -10,22 +10,19 @@
 #include <sys/uio.h>    // read, write
 #include <sys/wait.h>   // wait
 #include <unistd.h>     // getpid, close, pipe, read, write
+#include <fcntl.h>      //open
+#include <string.h>     //strlen
 
 int main(int args, char *argv[]){
-    for(int i = 0; i < args; i++){
-        printf("引き数%d : %s\n", i, argv[i]);
-    }
 
     //PIDを確認
-    printf("exec後のPID : %d\n", getpid());
+    printf("exec後の子プロセスのPID : %d\n", getpid());
     
     char buf[1024];
     int fd;     //書き込み先のファイル記述子
 
-    //scanf, open , write, close
-
     //ファイル記述子を開く
-    if((fd = open("./result.txt", O_WRONL|O_TRUNC|O_CREAT)) == -1){
+    if((fd = open("./result.txt", O_WRONLY|O_TRUNC|O_CREAT, 0666)) == -1){
         perror("open");
         exit(1);
     }
@@ -34,13 +31,13 @@ int main(int args, char *argv[]){
     printf("あなたの名前は？\n");
     scanf("%s", buf);
 
-    if(write(fd, buf, sizeof(buf) != sizeof(buf))){
+    if(write(fd, buf, strlen(buf)) != strlen(buf)){
         perror("write");
         exit(1);
     }
 
     //改行の書き込み
-    if(write(fd, "\n", 1 != 1)){
+    if(write(fd, "\n", 1) != 1){
         perror("write");
         exit(1);
     }
@@ -49,7 +46,7 @@ int main(int args, char *argv[]){
     printf("あなたの年齢は？\n");
     scanf("%s", buf);
 
-    if(write(fd, buf, sizeof(buf) != sizeof(buf))){
+    if(write(fd, buf, strlen(buf)) != strlen(buf)){
         perror("write");
         exit(1);
     }
