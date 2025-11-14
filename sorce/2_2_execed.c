@@ -15,8 +15,50 @@ int main(int args, char *argv[]){
     for(int i = 0; i < args; i++){
         printf("引き数%d : %s\n", i, argv[i]);
     }
+
+    //PIDを確認
+    printf("exec後のPID : %d\n", getpid());
     
+    char buf[1024];
+    int fd;     //書き込み先のファイル記述子
+
     //scanf, open , write, close
+
+    //ファイル記述子を開く
+    if((fd = open("./result.txt", O_WRONL|O_TRUNC|O_CREAT)) == -1){
+        perror("open");
+        exit(1);
+    }
+
+    //名前の入力・書き込み
+    printf("あなたの名前は？\n");
+    scanf("%s", buf);
+
+    if(write(fd, buf, sizeof(buf) != sizeof(buf))){
+        perror("write");
+        exit(1);
+    }
+
+    //改行の書き込み
+    if(write(fd, "\n", 1 != 1)){
+        perror("write");
+        exit(1);
+    }
+
+    //年齢の入力・書き込み
+    printf("あなたの年齢は？\n");
+    scanf("%s", buf);
+
+    if(write(fd, buf, sizeof(buf) != sizeof(buf))){
+        perror("write");
+        exit(1);
+    }
+
+    //ファイル記述子を閉じる
+    if(close(fd) == -1){
+        perror("close");
+        exit(1);
+    };
 
     exit(0);
 }
