@@ -14,7 +14,7 @@ pipe を使って、親プロセスから子プロセスへ文字列を送信し
 #include <sys/wait.h>   // wait
 #include <unistd.h>     // getpid, close, pipe, read, write
 
-int main(){
+int main(void){
 
     pid_t pid;
     int status;
@@ -35,9 +35,9 @@ int main(){
         printf("子プロセスのpid : %d\n", getpid());     //自身のPIDを出力
 
         close(fd[1]);   //書き込み口のファイル記述子を閉じる
-        nbytes = read(fd[0], buf, sizeof(buf));     //読み込み口からbufに内容を書き込む
+        nbytes = read(fd[0], buf, sizeof(buf));     //読み込み口からbufに内容を読み込む
         write(1, buf, nbytes);      //標準出力にbufの中身を出力
-        close(fd[0]);   //pipeの読み込みが終わったので、読み込み口のファイル記述子を閉じる
+        close(fd[0]);   //読み込み口から読み込みが終わったので、ファイル記述子を閉じる
 
         exit(0);
 
@@ -47,7 +47,7 @@ int main(){
         close(fd[0]);   //読み込み口のファイル記述子を閉じる
         char text[] = "親２子\n";
         write(fd[1], &text, sizeof(text));      //書き込み口に文字列textを書き込む
-        close(fd[1]);   //pipeへの書き込みが終わったので、書き込み口のファイル記述子を閉じる
+        close(fd[1]);   //書き込み口への書き込みが終わったので、ファイル記述子を閉じる
         
         if(wait(&status) == (pid_t) - 1){   //子プロセスの終了を待つ
             perror("wait");
