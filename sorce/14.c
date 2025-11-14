@@ -11,7 +11,7 @@
 #include <sys/wait.h>   // wait
 #include <unistd.h>     // getpid, close, pipe, read, write
 #include <fcntl.h>      //open
-#include <string.h>     //strlen
+#include <string.h>     //strlens
 
 int main(int args, char *argv[]){
 
