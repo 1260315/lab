@@ -18,9 +18,7 @@ B.スレッドを生成するプログラムは以下の仕様である。
 #include <stdio.h>      // printf
 #include <stdlib.h>     // exit
 #include <sys/types.h>  // getpid, read, wait
-#include <sys/uio.h>    // read, write
 #include <sys/wait.h>   // wait
-#include <unistd.h>     // getpid, close, pipe, read, write
 
 int counter = 0;     //大域変数の初期化
 
